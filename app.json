@@ -14,6 +14,7 @@
     "scripts": {
       "postdeploy": "bundle exec rake bootstrap"
     },
+    "engines": { "node": "12.16.0" },
     "env": {
       "ATLAS_URI": {
         "value": "mongodb://mufaro:mewmewnyaa11@portofolio-shard-00-00.txfzk.mongodb.net:27017,portofolio-shard-00-01.txfzk.mongodb.net:27017,portofolio-shard-00-02.txfzk.mongodb.net:27017/porto123?ssl=true&replicaSet=atlas-6836hm-shard-0&authSource=admin&retryWrites=true&w=majority"
