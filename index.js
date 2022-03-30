@@ -9,11 +9,13 @@ const ppRoutes = require("./routes/pp.js")
 const mongoose = require('mongoose');
 
 //connect MongoDB
-mongoose.connect(process.env.ATLAS_URI).then(() => {
+mongoose.connect("mongodb://mufaro:mewmewnyaa11@portofolio-shard-00-00.txfzk.mongodb.net:27017,portofolio-shard-00-01.txfzk.mongodb.net:27017,portofolio-shard-00-02.txfzk.mongodb.net:27017/porto123?ssl=true&replicaSet=atlas-6836hm-shard-0&authSource=admin&retryWrites=true&w=majority").then(() => {
     console.log('conn MongoDB');
 }).catch((error) => {
     console.log(error);
 });
+
+//process.enc.ATLAS_URI
 
 // dotenv.config();
 app.use(express.json())
