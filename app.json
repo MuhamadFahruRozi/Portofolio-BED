@@ -1,0 +1,35 @@
+{
+    "name": "Portofolio MFR",
+    "description": "This is portofolio app",
+    "keywords": [
+      "portofolio",
+      "CSS",
+      "MongoDB",
+      "Express",
+      "React",
+      "Node",
+      "Cloudinary"
+    ],
+    "repository": "https://github.com/MuhamadFahruRozi/Portofolio-BED",
+    "scripts": {
+      "postdeploy": "bundle exec rake bootstrap"
+    },
+    "env": {
+      "ATLAS_URI": {
+        "value": "mongodb://mufaro:mewmewnyaa11@portofolio-shard-00-00.txfzk.mongodb.net:27017,portofolio-shard-00-01.txfzk.mongodb.net:27017,portofolio-shard-00-02.txfzk.mongodb.net:27017/porto123?ssl=true&replicaSet=atlas-6836hm-shard-0&authSource=admin&retryWrites=true&w=majority"
+      },
+      "C_NAME": {
+        "value": "aserehearehe"
+      },
+      "C_API_KEY": {
+        "value": "366992497442631"
+      },
+      "C_API_SECRET": {
+        "value": "E_k3mlOhp3dBgX5aYXhbTrxUEeg"
+      },
+      "BROWSER": {
+        "value": "none"
+      } 
+    }
+  }
+  
