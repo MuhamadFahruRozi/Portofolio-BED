@@ -49,70 +49,20 @@ router.post("/", upload.fields([{name:'thumbImg'},{name:'images'}]), async (req,
                 updatedAt: new Date()
                 });
                 await newProjectImage.save();
-                // return newProjectImage;
             }catch(err){
-                res.status(500).json(err + "Meowww")        
+                res.status(500).json(err)        
             }
         })
         res.status(200).json("Project "+req.body.title+" Added")
     }catch(err){
-        res.status(500).json(err + "Meowww")
+        res.status(500).json(err)
     }
 })
-
-
-//update
-// router.post("/:id", upload.fields([{name:'thumbImg'},{name:'images'}]), async (req, res) => {
-//     try{
-//         //project
-//         const project = await Project.findById(req.params.id);
-//         const uploadup = await cloudinary.uploader.upload(req.files['thumbImg'][0].path);
-//         const updatedProject = await Project.findByIdAndUpdate(
-//             req.params.id,
-//             {
-//                 title: req.body.title, 
-//                 desc: req.body.desc,
-//                 thumbImg_url: uploadup.secure_url,
-//                 thumbImg_id: uploadup.public_id,
-//                 updatedAt: new Date()
-//             },
-//             {new: true}
-//         );
-//         //pic
-//         let pictures = req.files['images'];
-//         if(!pictures)
-//             return res.status(400).json({ message: "No picture Added"});
-        
-//         const img = await ProjectImage.find({project_id: project.project_id})
-//         let multiple
-//         let multipleupload = pictures.map(async (picture) => {
-//             try{
-//                 const uploadpp = await cloudinary.uploader.upload(picture.path);
-//                 const newProjectImage = new ProjectImage({
-//                 project_id: req.body.project_id,
-//                 pic_url: uploadpp.secure_url,
-//                 pic_id: uploadpp.public_id,
-//                 createdAt: new Date(),
-//                 updatedAt: new Date()
-//                 });
-//                 await newProjectImage.save();
-//                 // return newProjectImage;
-//             }catch(err){
-//                 res.status(500).json(err + "Meowww")        
-//             }
-//         })
-//         res.status(200).json("Project "+req.body.title+" Added")
-//     }catch(err){
-//         res.status(500).json(err + "Meowww")
-//     }
-// })
 
 //Update
 router.put("/:slug", upload.single('thumbImg'),async (req, res) => {
     try{
         if(!req.file){
-            // const project = await Project.findById(req.params.id);
-            // const uploadpp = await cloudinary.uploader.upload(req.file.path)
             const updatedProject = await Project.findOneAndUpdate(
                 {slug:req.params.slug},
                 {
@@ -124,7 +74,7 @@ router.put("/:slug", upload.single('thumbImg'),async (req, res) => {
                 },
                 {new: true}
             );
-            res.status(200).json(updatedProject);
+            res.status(200).json("Project Updated!");
         }else{
             const project = await Project.findOne({slug:req.params.slug});
             await cloudinary.uploader.destroy(`${project.thumbImg_id}`);
@@ -142,7 +92,7 @@ router.put("/:slug", upload.single('thumbImg'),async (req, res) => {
                 },
                 {new: true}
             );
-            res.status(200).json(updatedProject);
+            res.status(200).json("Project Updated!");
         }
     }catch(err){
         res.status(500).json(err);
@@ -153,18 +103,6 @@ router.put("/:slug", upload.single('thumbImg'),async (req, res) => {
 router.get("/", async (req, res) => {
     try{
         const showAll = await Project.find().sort({updatedAt: "descending"});
-        // const imgAll = await ProjectImage.find();
-        // const showall = await Project.aggregate([
-        //     {
-        //         $lookup:{
-        //             from: "project_image",
-        //             localField: "project_id",
-        //             foreignField: "project_id",
-        //             as: "mewa"
-        //         }
-        //     }
-        // ])
-        // const projectList = await Project.
             res.status(200).json(showAll)
         }catch(err){
             res.status(500).json(err)
@@ -173,25 +111,9 @@ router.get("/", async (req, res) => {
 
 //showOnecc
 router.get("/:slug", async (req, res) => {
-    // const ObId = require('mongoose').Types.ObjectId
     try{
         const pro = await Project.findOne({slug: req.params.slug})
         const img = await ProjectImage.find({project_id: pro.project_id})
-        // const mi = await Project.aggregate([
-        //     {
-        //         $match: {
-        //             _id: ObId(req.params.id)
-        //         }
-        //     },
-        //     {
-        //         $lookup:{
-        //             from: "project_image",
-        //             localField: "project_id",
-        //             foreignField: "project_id",
-        //             as: "mewa"
-        //         }
-        //     }
-        // ])
             res.status(200).json({Project: pro, Image: img})
         }catch(err){
             res.status(500).json(err)

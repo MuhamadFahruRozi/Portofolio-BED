@@ -15,13 +15,8 @@ mongoose.connect("mongodb://mufaro:mewmewnyaa11@portofolio-shard-00-00.txfzk.mon
     console.log(error);
 });
 
-//process.enc.ATLAS_URI
-
-// dotenv.config();
 app.use(express.json())
 const cors = require("cors");
-// app.use(cors());
-// app.use(cors({ credentials: true }))
 app.use(cors({origin: true, credentials: true}));
 
 app.listen(process.env.PORT || 3000 , () => {
