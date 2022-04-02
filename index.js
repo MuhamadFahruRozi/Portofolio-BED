@@ -5,7 +5,6 @@ const homeRoutes = require("./routes/home.js")
 const aboutRoutes = require("./routes/about.js")
 const projectRoutes = require("./routes/projects.js")
 const userRoutes = require("./routes/user.js")
-const ppRoutes = require("./routes/pp.js")
 const mongoose = require('mongoose');
 
 //connect MongoDB
