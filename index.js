@@ -27,6 +27,5 @@ app.listen(process.env.PORT || 3000 , () => {
 app.use("/api/home", homeRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/projects", projectRoutes);
-app.use("/api/pp", ppRoutes);
 app.use("/api/user", userRoutes);
 
